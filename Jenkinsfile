@@ -22,6 +22,7 @@ pipeline {
                 sh "docker rm -f hello-go"
             }
             sh "echo 'build docker image $imageName'"
+            sh "echo '$PATH'"
             sh "docker build -t ${imageName} ."
             sh "docker push ${imageName}"
             sh "docker run --name hello-go --rm -d --network my-net -p 8002:8001 -e REDIS=redis:6379 ${imageName}"
@@ -37,6 +38,7 @@ pipeline {
           }
           stage("Acceptance test cucumber") {
                 steps {
+                    sh "go get -u github.com/cucumber/godog/cmd/godog@latest"
                     sh "CALC_URL=http://localhost:8002 godog"
                 }
           }
