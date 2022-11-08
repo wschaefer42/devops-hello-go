@@ -1,3 +1,5 @@
+def imageName = "wschaefer42/devops-hello-go"
+
 pipeline {
   agent any
 
@@ -15,7 +17,6 @@ pipeline {
         }
     }
     stage("Docker") {
-        def imageName = "wschaefer42/devops-hello-go"
         steps {
             catchError {
                 sh "docker rm -f hello-go"
