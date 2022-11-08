@@ -1,4 +1,4 @@
-image := docker-hello-go
+image := devops-hello-go
 
 build-debug:
 	DOCKER_BUILDKIT=0 docker build -t $(image) . --no-cache

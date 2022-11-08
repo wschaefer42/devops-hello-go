@@ -9,6 +9,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"io"
 	"os"
+	"strconv"
 )
 
 var background = context.Background()
@@ -83,6 +84,18 @@ func createApp(logger io.Writer) *iris.Application {
 			name := ctx.Params().Get("name")
 			if _, err := ctx.Writef("Hello %s", name); err != nil {
 				log.Fatal().Msgf("Write Iris Context failed: %s", err)
+			}
+		})
+		serviceAPI.Get("/add", func(ctx iris.Context) {
+			a, _ := strconv.Atoi(ctx.URLParamDefault("a", "0"))
+			b, _ := strconv.Atoi(ctx.URLParamDefault("b", "0"))
+			sum := a + b
+			log.Debug().Msgf("/add %d + %d = %d", a, b, sum)
+			response := struct {
+				Sum int `json:"sum"`
+			}{Sum: sum}
+			if _, err := ctx.JSON(response); err != nil {
+				log.Fatal().Msgf("Write JSON failed: %s", err)
 			}
 		})
 	}
