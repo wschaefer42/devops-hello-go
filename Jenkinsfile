@@ -15,11 +15,11 @@ pipeline {
         }
     }
     stage("Docker") {
+        def imageName = "wschaefer42/devops-hello-go"
         steps {
             catchError {
                 sh "docker rm -f hello-go"
             }
-            def imageName = "wschaefer42/devops-hello-go"
             sh "echo 'build docker image $imageName'"
             sh 'docker build -t $imageName .'
             sh 'docker push $imageName'
