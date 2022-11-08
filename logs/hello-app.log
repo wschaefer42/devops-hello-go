@@ -1,0 +1,6 @@
+{"level":"info","time":"2022-11-06T17:54:37Z","message":"Iris Framework is ready"}
+{"level":"info","time":"2022-11-06T17:54:37Z","message":"App is listing at 0.0.0.0:8001"}
+Now listening on: http://0.0.0.0:8001
+Application started. Press CTRL+C to shut down.
+[ERRO] 2022/11/06 17:55 http: Server closed
+{"level":"fatal","time":"2022-11-06T17:55:02Z","message":"Listen to 0.0.0.0:8001 failed with http: Server closed"}
