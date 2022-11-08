@@ -22,9 +22,9 @@ pipeline {
                 sh "docker rm -f hello-go"
             }
             sh "echo 'build docker image $imageName'"
-            sh 'docker build -t $imageName .'
-            sh 'docker push $imageName'
-            sh 'docker run --name hello-go --rm --network my-net -p 8002:8001 -e REDIS=redis:6379 $imageName'
+            sh 'docker build -t ${imageName} .'
+            sh 'docker push {$imageName}'
+            sh 'docker run --name hello-go --rm --network my-net -p 8002:8001 -e REDIS=redis:6379 {$imageName}'
         }
     }
     stage("Acceptance Tests") {
