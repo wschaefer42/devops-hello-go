@@ -39,7 +39,7 @@ pipeline {
           stage("Acceptance test cucumber") {
                 steps {
                     sh "go install github.com/cucumber/godog/cmd/godog@latest"
-                    sh "CALC_URL=http://localhost:8002 `go env GOPATH`/bin/godog"
+                    sh "CALC_URL=http://localhost:8002 `go env GOPATH`/bin/godog run"
                 }
           }
       }
