@@ -4,11 +4,17 @@ services:
     container_name: hello-app
     depends_on:
       - redis
+      - rabbitmq
     ports:
       - "8002:8001"
     environment:
       REDIS: redis:6379
+      RABBITMQ: rabbitmq:5672
 
   redis:
     image: redis:latest
     container_name: redis-db
+
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
